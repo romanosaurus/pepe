@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  server:
+    build: ./server/.
+    volumes:
+      - ./server/.:/server/
+      - /server/node_modules
+    ports:
+      - "8080:8080"
+    networks:
+       - database-tier
+
+  db:
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=pepe
+      - MONGO_INITDB_ROOT_USERNAME=romain
+      - MONGO_INITDB_ROOT_PASSWORD=romain
+    volumes:
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - db-data:/data/db
+    networks:
+      - database-tier
+
+volumes:
+  db-data:
+
+networks:
+  back-tier:
+  database-tier:
