@@ -1,6 +1,16 @@
 version: '3'
 
 services:
+  client:
+    build: ./client/.
+    volumes:
+      - ./client/.:/client/
+      - /client/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - back-tier
+
   server:
     build: ./server/.
     volumes:
@@ -9,7 +19,8 @@ services:
     ports:
       - "8080:8080"
     networks:
-       - database-tier
+      - back-tier
+      - database-tier
 
   db:
     image: mongo
