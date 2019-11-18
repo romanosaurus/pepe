@@ -8,12 +8,8 @@ export interface IUser extends Document {
     accessToken: string;
 }
 
-export interface ICreateUser {
-    email: IUser['email'];
-    firstName: IUser['firstName'];
-    lastName: IUser['lastName'];
+export interface ICreateUser extends IUserInfo {
     password: IUser['password'];
-    accessToken: IUser['accessToken'];
 }
 
 export interface IUserInfo

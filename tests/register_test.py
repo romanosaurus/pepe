@@ -1,11 +1,11 @@
 import requests
 
 res = requests.post("http://localhost:8080/user/create", data={
-    'email': 'asaaaaaaaaaa',
-    'firstName': 'asa',
+    'email': 'romain.fouyerss',
+    'firstName': 'romain',
     'lastName': 'asa',
     'password': 'test'
-});
+})
 
 print(res.json())
 

@@ -35,7 +35,16 @@ function getUser({ app }: TRoutesInput) {
     });
 }
 
+function loginUser({ app }: TRoutesInput) {
+    app.post('/user/login', async (req, res) => {
+        const user = await UserController.GetUserByEmailAndPassword(req.body.email, req.body.password);
+
+        return res.send({ user });
+    })
+}
+
 export default ({ app }: TRoutesInput) => {
     createUser({ app });
     getUser({ app });
+    loginUser({ app });
 }
